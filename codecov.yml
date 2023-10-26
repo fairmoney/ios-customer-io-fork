@@ -1,0 +1,23 @@
+# Configuration for CodeCov.io service. 
+# https://docs.codecov.com/docs/codecov-yaml
+# https://docs.codecov.com/docs/common-recipe-list
+
+coverage:
+  status:
+    # rules applied to only changes in a pull request. Not changes to the test coverage of the entire project. 
+    patch: 
+      default:
+        # Do not fail CI server if pull request doesn't introduce very many tests in it. Some pull requests are small. Some are refactors where the 
+        # code coverage decreases a small amount without causing harm to the code base. 
+        # informational will generate a report and present it in the PR but will not block the PR from being merged. 
+        informational: true 
+    project:
+      default:
+        informational: true 
+
+# The file that contains code coverage information may contain coverage for files that we do not want to keep track of. 
+# Example: We do not want to know the coverage for the Tests/ directory because that does not contain source code of our SDK. 
+# https://docs.codecov.com/docs/ignoring-paths
+ignore: 
+  - "Tests" # ignore code coverage of Test/ files 
+  - "**/*.generated.swift" # Ignore code coverage of generated files.
